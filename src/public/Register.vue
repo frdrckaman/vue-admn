@@ -1,30 +1,30 @@
 <template>
     <main class="form-signin">
-        <form>
+        <form @submit.prevent="submit">
             <h1 class="h3 mb-3 fw-normal">Please Sign UP</h1>
 
             <div class="form-floating">
-                <input type="text" class="form-control" id="first_name" placeholder="First Name">
+                <input type="text" class="form-control" id="first_name" placeholder="First Name" v-model="firstName">
                 <label for="first_name">First Name</label>
             </div>
 
             <div class="form-floating">
-                <input type="text" class="form-control" id="last_name" placeholder="Last Name">
+                <input type="text" class="form-control" id="last_name" placeholder="Last Name" v-model="lastName">
                 <label for="last_name">Last Name</label>
             </div>
 
             <div class="form-floating">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" v-model="email">
                 <label for="floatingInput">Email address</label>
             </div>
 
             <div class="form-floating">
-                <input type="password" class="form-control" id="password" placeholder="Password">
+                <input type="password" class="form-control" id="password" placeholder="Password" v-model="password">
                 <label for="password">Password</label>
             </div>
 
             <div class="form-floating">
-                <input type="password" class="form-control" id="passwordConfirm" placeholder="Password Confirm">
+                <input type="password" class="form-control" id="passwordConfirm" placeholder="Password Confirm" v-model="passwordConfirm">
                 <label for="passwordConfirm">Password Confirm</label>
             </div>
 
@@ -34,8 +34,35 @@
 </template>
 
 <script>
+    import {ref} from 'vue'
     export default {
-        name: "Register"
+        name: "Register",
+        setup() {
+            const firstName = ref('');
+            const lastName = ref('');
+            const email = ref('');
+            const password = ref('');
+            const passwordConfirm = ref('');
+
+            const submit = () => {
+                console.log({
+                    first_name: firstName.value,
+                    last_name: lastName.value,
+                    email: email.value,
+                    password: password.value,
+                    password_confirm: passwordConfirm.value
+                })
+            }
+
+            return {
+                firstName,
+                lastName,
+                email,
+                password,
+                passwordConfirm,
+                submit
+            }
+        }
     }
 </script>
 
